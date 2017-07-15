@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<meta>
+	<info name="kroma-cnr" description="kroma's Cops n Robbers" />
+	<assembly ref="MongoDB.Bson.dll"/>
+	<assembly ref="MongoDB.Driver.dll"/>
+	<assembly ref="MongoDB.Driver.Core.dll"/>
+	<assembly ref="System.Runtime.InteropServices.RuntimeInformation.dll"/>
+
+	<script src="kroma-cnr.cs" type="server" lang="csharp" />
+	<script src="Database/mongo.cs" type="server" lang="csharp" />
+</meta>
