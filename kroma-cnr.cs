@@ -33,6 +33,4 @@ namespace kroma_cnr
             API.shared.sendChatMessageToPlayer(player, "This account is already registered!");
         }
     }
-
-    //[Command("register")]
 }

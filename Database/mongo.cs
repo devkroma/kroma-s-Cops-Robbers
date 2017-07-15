@@ -32,6 +32,21 @@ namespace kroma_cnr.Database
             }
         }
 
+        public static async void CheckAccountExistsToRegister(Client player, string password)
+        {
+            var collection = DatabaseClass.CnRDatabase.GetCollection<PlayerAccount>("accounts");
+            var filter = Builders<PlayerAccount>.Filter.Eq("Name", player.name);
+            var result = await collection.Find(filter).ToListAsync();
+            if (result.Count() >= 1)
+            {
+                Register.AccountAlreadyRegistered(player);
+            }
+            else
+            {
+                 Register.RegisterAccountAsync(player, password);
+            }
+        }
+
         public static void LoadAccount(string[] name)
         {
 

@@ -7,5 +7,7 @@
 	<assembly ref="System.Runtime.InteropServices.RuntimeInformation.dll"/>
 
 	<script src="kroma-cnr.cs" type="server" lang="csharp" />
+
 	<script src="Database/mongo.cs" type="server" lang="csharp" />
+	<script src="Database/register.cs" type="server" lang="csharp" />
 </meta>
