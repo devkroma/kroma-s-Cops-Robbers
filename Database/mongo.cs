@@ -82,12 +82,9 @@ namespace kroma_cnr.Database
             if (String.IsNullOrEmpty(text))
                 return String.Empty;
 
-            using (SHA.sha)
-            {
-                byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
-                byte[] hash = SHA.sha.ComputeHash(textData);
-                return BitConverter.ToString(hash).Replace("-", String.Empty);
-            }
+            byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
+            byte[] hash = SHA.sha.ComputeHash(textData);
+            return BitConverter.ToString(hash).Replace("-", String.Empty);
         }
 
         public static void LoadAccount(string[] name)
