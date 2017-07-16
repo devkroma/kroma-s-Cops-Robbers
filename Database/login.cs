@@ -25,7 +25,8 @@ namespace kroma_cnr.Database
             }
             else
             {
-                Mongo.CheckAccountExistsToLogin(player, password);
+                string hashedPassword = Mongo.GetStringSha256Hash(password);
+                Mongo.CheckAccountExistsToLogin(player, hashedPassword);
             }
         }
     }
