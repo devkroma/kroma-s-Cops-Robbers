@@ -8,8 +8,10 @@ namespace kroma_cnr
         public Main()
         {
             kroma_cnr.Database.Mongo.Main();
+            kroma_cnr.Player.playerid.Main();
             API.onResourceStart += MainOnResourceStart;
             API.onPlayerConnected += MainOnPlayerConnected;
+            API.onPlayerDisconnected += MainOnPlayerDisconnected;
         }
 
         public void MainOnResourceStart()
@@ -31,6 +33,11 @@ namespace kroma_cnr
         public static void OnAccountRegistered(Client player)
         {
             API.shared.sendChatMessageToPlayer(player, "This account is already registered!");
+        }
+
+        private void MainOnPlayerDisconnected(Client player, string reason)
+        {
+            kroma_cnr.Player.playerid.PlayeridOnPlayerDisconnected(player, reason);
         }
     }
 }

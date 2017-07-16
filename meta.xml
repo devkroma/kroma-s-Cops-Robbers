@@ -10,4 +10,7 @@
 
 	<script src="Database/mongo.cs" type="server" lang="csharp" />
 	<script src="Database/register.cs" type="server" lang="csharp" />
+	<script src="Database/login.cs" type="server" lang="csharp" />
+	
+	<script src="Player/playerid.cs" type="server" lang="csharp" />
 </meta>
