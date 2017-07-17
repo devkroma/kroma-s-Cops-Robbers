@@ -18,6 +18,7 @@ namespace kroma_cnr
         {
             kroma_cnr.Database.Mongo.Main();
             kroma_cnr.Player.playerid.Main();
+            kroma_cnr.Admin.admincommands.Main();
             API.onResourceStart += MainOnResourceStart;
             API.onPlayerConnected += MainOnPlayerConnected;
             API.onPlayerDisconnected += MainOnPlayerDisconnected;
