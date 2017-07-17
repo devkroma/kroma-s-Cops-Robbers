@@ -1,4 +1,5 @@
 ﻿using GTANetworkServer;
+using GTANetworkShared;
 using System;
 using System.Linq;
 
@@ -11,11 +12,17 @@ namespace kroma_cnr.Admin
             API.shared.consoleOutput("[ADMINCOMMANDS] Admin commands loaded.");
         }
 
+        public static int getAdminLevel(Client player)
+        {
+            int playerid = kroma_cnr.Player.playerid.GetPlayerId(player);
+            return kroma_cnr.Player.playerid.PlayerAccount[playerid].AdminLevel;
+        }
+
         [Command("kickplayer", Alias = "pkick", GreedyArg = true)]
         public void commandKick(Client player, int targetid, string reason)
         {
             int playerid = kroma_cnr.Player.playerid.GetPlayerId(player);
-            if(kroma_cnr.Player.playerid.PlayerAccount[playerid].AdminLevel >= 2)
+            if(getAdminLevel(player) >= 2)
             {
                 if(playerid == targetid)
                 {
@@ -44,8 +51,7 @@ namespace kroma_cnr.Admin
         [Command("admin", Alias = "a", GreedyArg = true)]
         public void commandAdmin(Client player, string message)
         {
-            int playerid = kroma_cnr.Player.playerid.GetPlayerId(player);
-            if(kroma_cnr.Player.playerid.PlayerAccount[playerid].AdminLevel >= 1)
+            if(getAdminLevel(player) >= 1)
             {
                 foreach(var key in kroma_cnr.Player.playerid.PlayerAccount.Keys.ToList())
                 {
@@ -60,6 +66,40 @@ namespace kroma_cnr.Admin
             else
             {
                 API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 1 to use this command.");
+            }
+        }
+
+        [Command("spawncar", Alias = "sc")]
+        public void commandSpawnCar(Client player, string modelname, int colour1, int colour2)
+        {
+            if(getAdminLevel(player) >= 3)
+            {
+                if(kroma_cnr.Vehicle.vehicle.vehicleNames.Contains(modelname))
+                {
+                    API.sendChatMessageToPlayer(player, "~#00cb00~", "Correct vehicle name.");
+                }
+                else
+                {
+                    API.sendChatMessageToPlayer(player, "~#808080~", "You have selected an invalid vehicle name.");
+                }
+            }
+            else
+            {
+                API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 3 to use this command.");
+            }
+        }
+
+        [Command("reloadvehiclelist")]
+        public void commandReloadVehicleList(Client player)
+        {
+            if(getAdminLevel(player) >= 8)
+            {
+                kroma_cnr.Vehicle.vehicle.loadVehicleNamesToList();
+                API.sendChatMessageToPlayer(player, "Vehicle list has been updated.");
+            }
+            else
+            {
+                API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 8 to use this command.");
             }
         }
     }
