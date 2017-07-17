@@ -6,6 +6,7 @@
 using GTANetworkServer;
 using GTANetworkShared;
 using System;
+using System.Globalization;
 
 namespace kroma_cnr
 {
@@ -23,6 +24,7 @@ namespace kroma_cnr
             API.onPlayerConnected += MainOnPlayerConnected;
             API.onPlayerDisconnected += MainOnPlayerDisconnected;
             API.onPlayerFinishedDownload += MainOnPlayerFinishedDownload;
+            API.onChatCommand += MainOnChatCommand;
         }
 
         public void MainOnResourceStart()
@@ -58,6 +60,26 @@ namespace kroma_cnr
             API.setEntityPosition(player.handle, upInAir);
             API.freezePlayer(player, true);
             kroma_cnr.Player.Camera.LoginCamera.setPlayerLoginCamera(player);
+        }
+
+        public void MainOnChatCommand(Client player, string command, CancelEventArgs e)
+        {
+            if(kroma_cnr.Player.playerid.GetPlayerId(player) == -1)
+            {
+                if(!(command.ToLower().StartsWith("/register") || command.ToLower().StartsWith("/login")))
+                {
+                    API.sendChatMessageToPlayer(player, "~#808080~", "You must log in before using any commands.");
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                if(command.ToLower().StartsWith("/register") || command.ToLower().StartsWith("/login"))
+                {
+                    API.sendChatMessageToPlayer(player, "~#808080~", "You can't use this command whilst logged in.");
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

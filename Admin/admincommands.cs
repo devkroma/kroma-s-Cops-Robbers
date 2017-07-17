@@ -1,5 +1,6 @@
 ﻿using GTANetworkServer;
 using System;
+using System.Linq;
 
 namespace kroma_cnr.Admin
 {
@@ -37,6 +38,28 @@ namespace kroma_cnr.Admin
             else
             {
                 API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 2 to use this command.");
+            }
+        }
+
+        [Command("admin", Alias = "a", GreedyArg = true)]
+        public void commandAdmin(Client player, string message)
+        {
+            int playerid = kroma_cnr.Player.playerid.GetPlayerId(player);
+            if(kroma_cnr.Player.playerid.PlayerAccount[playerid].AdminLevel >= 1)
+            {
+                foreach(var key in kroma_cnr.Player.playerid.PlayerAccount.Keys.ToList())
+                {
+                    if(kroma_cnr.Player.playerid.PlayerAccount[key] == null) continue;
+                    else if(kroma_cnr.Player.playerid.PlayerAccount[key].AdminLevel >= 1)
+                    {
+                        Client sendTo = kroma_cnr.Player.playerid.GetClientFromPlayerId(key);
+                        API.sendChatMessageToPlayer(sendTo, "~#66CDAA~", String.Format("[A] {0}~w~: {1}", player.name, message));
+                    }
+                }
+            }
+            else
+            {
+                API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 1 to use this command.");
             }
         }
     }
