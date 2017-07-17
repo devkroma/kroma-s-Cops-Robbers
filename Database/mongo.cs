@@ -86,11 +86,6 @@ namespace kroma_cnr.Database
             byte[] hash = SHA.sha.ComputeHash(textData);
             return BitConverter.ToString(hash).Replace("-", String.Empty);
         }
-
-        public static void LoadAccount(string[] name)
-        {
-
-        }
     }
 
     public class PlayerAccount

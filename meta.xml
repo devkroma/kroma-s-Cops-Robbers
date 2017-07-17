@@ -13,4 +13,6 @@
 	<script src="Database/login.cs" type="server" lang="csharp" />
 	
 	<script src="Player/playerid.cs" type="server" lang="csharp" />
+	<script src="Player/Camera/logincamera.cs" type="server" lang="csharp" />
+	<script src="Player/Camera/logincamera.js" type="client" lang="javascript" />
 </meta>
