@@ -5,6 +5,7 @@
 	<assembly ref="MongoDB.Driver.dll"/>
 	<assembly ref="MongoDB.Driver.Core.dll"/>
 	<assembly ref="System.Runtime.InteropServices.RuntimeInformation.dll"/>
+	<assembly ref="System.Web.Extensions.dll"/>
 
 	<script src="kroma-cnr.cs" type="server" lang="csharp" />
 
@@ -17,6 +18,10 @@
 	<script src="Player/playerid.cs" type="server" lang="csharp" />
 	<script src="Player/Camera/logincamera.cs" type="server" lang="csharp" />
 	<script src="Player/Camera/logincamera.js" type="client" lang="javascript" />
+	<script src="Player/Skin/skin.cs" type="server" lang="csharp" />
+	<script src="Player/Skin/spawnSkin.js" type="client" lang="javascript" />
 
 	<script src="Vehicle/vehicle.cs" type="server" lang="csharp" />
+
+	<file src="jquery.js" />
 </meta>

@@ -14,6 +14,8 @@ namespace kroma_cnr
     {
         public static int maxPlayers = 50;
         private Vector3 upInAir = new Vector3(350.0, 200.0, 170.0);
+        public static Vector3 skinPos = new Vector3(464.0632, -990.294, 24.91485);
+        public static Vector3 skinRot = new Vector3(0.0, 0.0, -9.998462);
         public static Vector3 spawnPos = new Vector3(363.2693, -595.5392, 28.67362);
 
         public Main()
@@ -22,11 +24,13 @@ namespace kroma_cnr
             kroma_cnr.Player.playerid.Main();
             kroma_cnr.Admin.admincommands.Main();
             kroma_cnr.Vehicle.vehicle.Main();
+            kroma_cnr.Player.Skin.skin.Main();
             API.onResourceStart += MainOnResourceStart;
             API.onPlayerConnected += MainOnPlayerConnected;
             API.onPlayerDisconnected += MainOnPlayerDisconnected;
             API.onPlayerFinishedDownload += MainOnPlayerFinishedDownload;
             API.onChatCommand += MainOnChatCommand;
+            API.onClientEventTrigger += MainOnClientEventTrigger;
         }
 
         public void MainOnResourceStart()
@@ -81,6 +85,14 @@ namespace kroma_cnr
                     API.sendChatMessageToPlayer(player, "~#808080~", "You can't use this command whilst logged in.");
                     e.Cancel = true;
                 }
+            }
+        }
+
+        public void MainOnClientEventTrigger(Client player, string eventName, params object[] arguments)
+        {
+            if(eventName == "setPlayerSpawnSkin")
+            {
+                kroma_cnr.Player.Skin.skin.setPlayerSpawnSkin(player, arguments[0].ToString());
             }
         }
     }

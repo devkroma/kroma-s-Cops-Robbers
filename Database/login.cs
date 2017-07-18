@@ -18,9 +18,10 @@ namespace kroma_cnr.Database
 
         public static void SpawnPlayer(Client player)
         {
-            API.shared.freezePlayer(player, false);
-            API.shared.setEntityPosition(player.handle, kroma_cnr.Main.spawnPos);
+            API.shared.setEntityPosition(player.handle, kroma_cnr.Main.skinPos);
+            API.shared.setEntityDimension(player.handle, kroma_cnr.Player.playerid.GetPlayerId(player) + 1);
             kroma_cnr.Player.Camera.LoginCamera.resetPlayerLoginCamera(player);
+            kroma_cnr.Player.Skin.skin.showPlayerSkinSelection(player);
         }
 
         [Command("login", SensitiveInfo = true, GreedyArg = true)]
