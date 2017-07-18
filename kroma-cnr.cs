@@ -14,6 +14,7 @@ namespace kroma_cnr
     {
         public static int maxPlayers = 50;
         private Vector3 upInAir = new Vector3(350.0, 200.0, 170.0);
+        public static Vector3 spawnPos = new Vector3(363.2693, -595.5392, 28.67362);
 
         public Main()
         {

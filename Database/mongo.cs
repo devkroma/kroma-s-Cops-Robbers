@@ -5,6 +5,7 @@ using GTANetworkServer;
 using System;
 using System.Security.Cryptography;
 using kroma_cnr.Player;
+using GTANetworkShared;
 
 namespace kroma_cnr.Database
 {
@@ -94,5 +95,17 @@ namespace kroma_cnr.Database
         public string Name { get; set; }
         public string Password { get; set; }
         public int AdminLevel { get; set; }
+    }
+
+    public class VehicleVar
+    {
+        public ObjectId Id { get; set; }
+        public NetHandle VehicleHandle { get; set; }
+        public VehicleHash Model { get; set; }
+        public int Colour1 { get; set; }
+        public int Colour2 { get; set; }
+        public Vector3 SpawnPos { get; set; }
+        public Vector3 SpawnRot { get; set; }
+        public int SpawnDim { get; set; }
     }
 }

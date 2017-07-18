@@ -70,13 +70,25 @@ namespace kroma_cnr.Admin
         }
 
         [Command("spawncar", Alias = "sc")]
-        public void commandSpawnCar(Client player, string modelname, int colour1, int colour2)
+        public void commandSpawnCar(Client player, string modelname, int colour1 = 131, int colour2 = 131)
         {
             if(getAdminLevel(player) >= 3)
             {
-                if(kroma_cnr.Vehicle.vehicle.vehicleNames.Contains(modelname))
+                if(kroma_cnr.Vehicle.vehicle.vehicleNames.Contains(modelname.ToLower()))
                 {
-                    API.sendChatMessageToPlayer(player, "~#00cb00~", "Correct vehicle name.");
+                    if(colour1 >= 0 && colour1 <= 159 && colour2 >= 0 && colour2 <= 159)
+                    {
+                        VehicleHash vehicle = API.vehicleNameToModel(modelname);
+                        Vector3 spawnPos = API.getEntityPosition(player.handle);
+                        Vector3 spawnRot = API.getEntityRotation(player.handle);
+                        int spawnDim = API.getEntityDimension(player.handle);
+                        API.sendChatMessageToPlayer(player, String.Format("Your {0} is attempting to spawn.", modelname));
+                        kroma_cnr.Vehicle.vehicle.trySpawnNewVehicleForPlayer(player, vehicle, spawnPos, spawnRot, colour1, colour2, spawnDim);
+                    }
+                    else
+                    {
+                        API.sendChatMessageToPlayer(player, "~#808080~", "Valid vehicle colour IDs are between 0 and 159.");
+                    }
                 }
                 else
                 {

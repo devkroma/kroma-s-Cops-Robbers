@@ -16,6 +16,13 @@ namespace kroma_cnr.Database
             API.shared.sendChatMessageToPlayer(player, "You've logged in successfully!");
         }
 
+        public static void SpawnPlayer(Client player)
+        {
+            API.shared.freezePlayer(player, false);
+            API.shared.setEntityPosition(player.handle, kroma_cnr.Main.spawnPos);
+            kroma_cnr.Player.Camera.LoginCamera.resetPlayerLoginCamera(player);
+        }
+
         [Command("login", SensitiveInfo = true, GreedyArg = true)]
         public void commandLogin(Client player, string password)
         {
