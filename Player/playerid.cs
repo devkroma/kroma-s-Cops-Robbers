@@ -38,6 +38,7 @@ namespace kroma_cnr.Player
                 {
                     PlayerAccount[pair.Key] = data;
                     isFree = true;
+                    PlayerAccount[pair.Key].Weapons = new List<string>();
                     API.shared.consoleOutput("[PLAYERID] {0} has logged in and been assigned playerid {1}", player.name, pair.Key);
                     Login.SpawnPlayer(player);
                     break;

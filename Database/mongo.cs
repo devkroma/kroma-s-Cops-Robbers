@@ -6,6 +6,7 @@ using System;
 using System.Security.Cryptography;
 using kroma_cnr.Player;
 using GTANetworkShared;
+using System.Collections.Generic;
 
 namespace kroma_cnr.Database
 {
@@ -95,6 +96,7 @@ namespace kroma_cnr.Database
         public string Name { get; set; }
         public string Password { get; set; }
         public int AdminLevel { get; set; }
+        public List<string> Weapons { get; set; }
     }
 
     public class VehicleVar

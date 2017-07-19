@@ -101,6 +101,33 @@ namespace kroma_cnr.Admin
             }
         }
 
+        [Command("spawnweapon", Alias = "sw")]
+        public void commandSpawnWeapon(Client player, string weaponname, int ammo)
+        {
+            if(getAdminLevel(player) >= 3)
+            {
+                if(ammo > 1 && ammo <= 999999)
+                {
+                    if(kroma_cnr.Admin.Anticheat.weapon.weaponNames.Contains(weaponname.ToLower()))
+                    {
+                        kroma_cnr.Admin.Anticheat.weapon.giveWeaponToPlayer(player, weaponname, ammo);
+                    }
+                    else
+                    {
+                        API.sendChatMessageToPlayer(player, "~#808080~", "You have selected an invalid weapon name.");
+                    }
+                }
+                else
+                {
+                    API.sendChatMessageToPlayer(player, "~#808080~", "You can only give yourself between 1 and 999999 ammo.");
+                }
+            }
+            else
+            {
+                API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 3 to use this command.");
+            }
+        }
+
         [Command("reloadvehiclelist")]
         public void commandReloadVehicleList(Client player)
         {

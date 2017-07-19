@@ -10,6 +10,7 @@
 	<script src="kroma-cnr.cs" type="server" lang="csharp" />
 
 	<script src="Admin/admincommands.cs" type="server" lang="csharp" />
+	<script src="Admin/Anticheat/weapon.cs" type="server" lang="csharp" />
 
 	<script src="Database/mongo.cs" type="server" lang="csharp" />
 	<script src="Database/register.cs" type="server" lang="csharp" />
@@ -22,6 +23,4 @@
 	<script src="Player/Skin/spawnSkin.js" type="client" lang="javascript" />
 
 	<script src="Vehicle/vehicle.cs" type="server" lang="csharp" />
-
-	<file src="jquery.js" />
 </meta>

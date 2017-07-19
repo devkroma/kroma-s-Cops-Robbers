@@ -1,6 +1,4 @@
 ﻿using GTANetworkServer;
-using MongoDB.Bson;
-using System.Collections.Generic;
 
 namespace kroma_cnr.Database
 {
@@ -20,6 +18,7 @@ namespace kroma_cnr.Database
         {
             API.shared.setEntityPosition(player.handle, kroma_cnr.Main.skinPos);
             API.shared.setEntityDimension(player.handle, kroma_cnr.Player.playerid.GetPlayerId(player) + 1);
+            API.shared.setEntityRotation(player.handle, kroma_cnr.Main.skinRot);
             kroma_cnr.Player.Camera.LoginCamera.resetPlayerLoginCamera(player);
             kroma_cnr.Player.Skin.skin.showPlayerSkinSelection(player);
         }

@@ -16,7 +16,8 @@ namespace kroma_cnr
         private Vector3 upInAir = new Vector3(350.0, 200.0, 170.0);
         public static Vector3 skinPos = new Vector3(464.0632, -990.294, 24.91485);
         public static Vector3 skinRot = new Vector3(0.0, 0.0, -9.998462);
-        public static Vector3 spawnPos = new Vector3(363.2693, -595.5392, 28.67362);
+        public static Vector3 spawnPosPolice = new Vector3(426.935, -980.9301, 30.71);
+        public static Vector3 spawnPosCriminal = new Vector3(363.2693, -595.5392, 28.67362);
 
         public Main()
         {
@@ -25,6 +26,7 @@ namespace kroma_cnr
             kroma_cnr.Admin.admincommands.Main();
             kroma_cnr.Vehicle.vehicle.Main();
             kroma_cnr.Player.Skin.skin.Main();
+            kroma_cnr.Admin.Anticheat.weapon.Main();
             API.onResourceStart += MainOnResourceStart;
             API.onPlayerConnected += MainOnPlayerConnected;
             API.onPlayerDisconnected += MainOnPlayerDisconnected;
