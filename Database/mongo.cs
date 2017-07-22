@@ -109,5 +109,18 @@ namespace kroma_cnr.Database
         public Vector3 SpawnPos { get; set; }
         public Vector3 SpawnRot { get; set; }
         public int SpawnDim { get; set; }
+        public ObjectId OwnerId { get; set; }
+    }
+
+    public class BuildingVar
+    {
+        public ObjectId Id { get; set; }
+        public string Name { get; set; }
+        public Vector3 RobberyPos { get; set; }
+        public int RobberyLevel { get; set; }
+        public int LastRobbed { get; set; }
+        public Blip MapBlip { get; set; }
+        public NetHandle Marker { get; set; } 
+        public TextLabel Label { get; set; }
     }
 }

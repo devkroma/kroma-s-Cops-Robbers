@@ -27,12 +27,14 @@ namespace kroma_cnr
             kroma_cnr.Vehicle.vehicle.Main();
             kroma_cnr.Player.Skin.skin.Main();
             kroma_cnr.Admin.Anticheat.weapon.Main();
+            kroma_cnr.Vehicle.rarevehicle.Main();
             API.onResourceStart += MainOnResourceStart;
             API.onPlayerConnected += MainOnPlayerConnected;
             API.onPlayerDisconnected += MainOnPlayerDisconnected;
             API.onPlayerFinishedDownload += MainOnPlayerFinishedDownload;
             API.onChatCommand += MainOnChatCommand;
             API.onClientEventTrigger += MainOnClientEventTrigger;
+            API.onPlayerEnterVehicle += MainOnPlayerEnterVehicle;
         }
 
         public void MainOnResourceStart()
@@ -95,6 +97,18 @@ namespace kroma_cnr
             if(eventName == "setPlayerSpawnSkin")
             {
                 kroma_cnr.Player.Skin.skin.setPlayerSpawnSkin(player, arguments[0].ToString());
+            }
+            else if(eventName == "onRareVehicleDelivered")
+            {
+                kroma_cnr.Vehicle.rarevehicle.onRareVehicleDelivered(player);
+            }
+        }
+
+        public void MainOnPlayerEnterVehicle(Client player, NetHandle vehicle)
+        {
+            if(vehicle == kroma_cnr.Vehicle.rarevehicle.rareVehicle)
+            {
+                kroma_cnr.Vehicle.rarevehicle.onPlayerEnterRareVehicle(player);
             }
         }
     }

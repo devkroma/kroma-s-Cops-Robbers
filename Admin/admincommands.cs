@@ -141,5 +141,32 @@ namespace kroma_cnr.Admin
                 API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 8 to use this command.");
             }
         }
+
+        [Command("createrobbery", Alias = "cr", GreedyArg = true)]
+        public void commandCreateRobbery(Client player, int robberylevel, string buildingname)
+        {
+            if(getAdminLevel(player) >= 4)
+            {
+                if(robberylevel >= 0 && robberylevel <= 100)
+                {
+                    if(buildingname.Length > 3)
+                    {
+                        kroma_cnr.Database.buildings.trySpawnNewRobberyForPlayer(player, robberylevel, buildingname);
+                    }
+                    else
+                    {
+                        API.sendChatMessageToPlayer(player, "~#808080~", "You must choose a building name with over 3 characters.");
+                    }
+                }
+                else
+                {
+                    API.sendChatMessageToPlayer(player, "~#808080~", "You must choose a robbery level between 0 and 100.");
+                }
+            }
+            else
+            {
+                API.sendChatMessageToPlayer(player, "~#808080~", "You must be admin level 4 to use this command.");
+            }
+        }
     }
 }
