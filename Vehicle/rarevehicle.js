@@ -28,7 +28,7 @@ API.onServerEventTrigger.connect(function (eventName, args) {
 			rareVehicle = null;
 			API.setBlipRouteVisible(garageBlip, false);
 			API.deleteEntity(garageMarker);
-			API.deleteEntity(garageBlip.handle);
+			API.deleteEntity(garageBlip);
 	}
 });
 
